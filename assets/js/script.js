@@ -70,13 +70,13 @@ var promptUser =  {
 //generatePassword function return string 
 function generatePassword() {
   
-  var userArray = []; //declare empty array
-
-  //ask user for criteria
+  //declare empty array and empt password string
+  var userArray = [];
+  var passwordString = ""; 
   
+  //ask user for criteria
   promptUser.askForLength();
   //if user cancelled when asked length of password then return empty string to kill function 
-  console.log(promptUser.lenOfPassword);
   if (promptUser.lenOfPassword === 0) {
     return "";
   }
@@ -87,21 +87,25 @@ function generatePassword() {
 
   //validate if the user selected atleast one character type or not, if not call generatePassword again
   if(!(promptUser.lowCase || promptUser.upCase || promptUser.nums || promptUser.special)) {
+    
     alert("Please choose atleast one character type");
-    generatePassword();
+    //recursively call generatePassword() until success then pass the string on return to kill the function
+    passwordString = generatePassword();
+    return passwordString;
   }
 
   //loops through the available character string and add to an Array
   for (var i = 0; i < promptUser.stringOfChar.length; i++) {
     userArray.push(promptUser.stringOfChar.charAt(i));
   }
-
+  
   //loop and concat a randomly generated character from userArray of characters up to password length
   var passwordString = "";
   for (var i = 0; i < promptUser.lenOfPassword; i++) {
-    passwordString += userArray[Math.floor(Math.random()*userArray.length)];
+    var randomNo = Math.floor(Math.random()*userArray.length);
+    passwordString += userArray[randomNo];
   }
-
+  
   //reset the character types and empty userArray for the next password generation
   promptUser.stringOfChar = "";
   userArray = []; 
