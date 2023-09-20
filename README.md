@@ -25,7 +25,7 @@ begins with clicking the "Generate Password" button on the webpage and the funct
 
 ## Link
 
-![live web application](https://fractalicecream.github.io/RandoPasscode/)
+[live web application](https://fractalicecream.github.io/RandoPasscode/)
 
 ## User Story
 
